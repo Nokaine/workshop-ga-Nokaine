@@ -30,3 +30,18 @@ jobs:
           name: coverage_outputs
           path: coverage-results.txt
           if-no-files-found: ignore
+
+  functional-test:
+    runs-on: ubuntu-20.04
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run functional tests
+        run: make functional_tests > functional-test-results.txt
+      - name: Upload functional test outputs
+        uses: actions/upload-artifact@v3
+        with:
+          name: function-tests_outputs
+          path: functional-test-results.txt
