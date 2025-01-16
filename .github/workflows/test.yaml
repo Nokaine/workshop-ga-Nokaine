@@ -38,8 +38,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Compile the project (make re)
+        run: make re
       - name: Run functional tests
-        run: make functional_tests > functional-test-results.txt
+        run: ./functional-test.sh > functional-test-results.txt
       - name: Upload functional test outputs
         uses: actions/upload-artifact@v3
         with:
